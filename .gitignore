@@ -1,0 +1,80 @@
+# ---------- macOS ----------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---------- Xcode: build output & per-user settings ----------
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+playground.xcworkspace
+
+# ---------- Swift Package Manager ----------
+.build/
+.swiftpm/
+Packages/
+Package.pins
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+
+# ---------- CocoaPods / Carthage (if ever used) ----------
+Pods/
+Carthage/Build/
+Carthage/Checkouts/
+
+# ---------- fastlane ----------
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# ---------- Secrets & credentials (never commit) ----------
+.env
+.env.*
+!.env.example
+*.xcconfig.local
+Secrets.xcconfig
+Secrets.plist
+*Secrets.swift
+*.p12
+*.p8
+*.pem
+*.key
+*.cer
+*.mobileprovision
+*.provisionprofile
+GoogleService-Info.plist
+credentials.json
+*token*.json
+
+# ---------- Personal financial data (never commit) ----------
+# Real exports, statements, or local databases. Use fake sample data in the repo instead.
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.store
+*.store-shm
+*.store-wal
+*.ofx
+*.qfx
+*.qif
+statements/
+exports/
+private/
+personal-data/
+
+# ---------- Local tool settings ----------
+.claude/settings.local.json
+*.swp
+*~
+.vscode/
+.idea/
