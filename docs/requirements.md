@@ -148,22 +148,6 @@ Recurring entries and imported transactions are never double-counted.
 - "Sign in" for the first version means local unlock only (Section 2)
 - Retirement accounts moved out of Liquid Assets into their own Retirement Assets section (Section 6)
 
-## 16. Resolved Questions
-- Sign-in vs. local-first: Face ID / passcode now, user authentication later
-- Retirement liquidity: separate Retirement Assets section
-- Joint accounts across groups: count only the shares owned by group members
-- Income and expenses on the dashboard: an Income & Expenses section on each group dashboard, using the same membership and ownership rules (Section 9)
-
-## 17. Open Questions
-- **Q1. Three or more owners:** default to an equal split (e.g. 33.33% each)? How should rounding be handled so the shares total exactly 100%?
-- **Q2. Shared liabilities:** do the same ownership-share rules apply to debts like a joint mortgage? (Assumed yes)
-- **Q3. Per-person view:** should there also be a view of a single person's accounts, or is the group drill-down enough?
-- **Q4. History before the app existed:** connected accounts may provide past balances, but manual assets only start their history when first entered. Is that acceptable?
-- **Q5. Ownership changes over time:** if a split changes (e.g. 50/50 to 70/30), should past snapshots keep the old split?
-- **Q6. Estimated amounts vs. exact matching:** duplicate detection flags exact amount matches, but estimated recurring entries (Section 9.2) will rarely match exactly. Should estimated entries match within a tolerance (e.g. ±10%), or rely on date and merchant instead?
-- **Q7. Recurring entries with no imported match:** if a recurring expense is expected but no matching transaction has been imported yet, does the monthly summary count the expected amount, the actual amount only, or show both "expected" and "actual"?
-- **Q8. Owner of a transaction:** imported transactions can inherit the owners of their account. Who owns a manual transaction or recurring entry by default, and can it be split (e.g. 50/50 daycare)?
-- **Q9. Transfers between own accounts:** like credit card payments, moving money between the family's own accounts (e.g. checking to savings, or a loan payment) shouldn't count as income or expense. Should these be detected and excluded the same way?
-- **Q10. Refunds and returns:** should a refund reduce expenses in its category, or count as income?
-- **Q11. Match date window:** how many days before or after the expected payment date should a transaction still be treated as a possible match?
-- **Q12. Pausing vs. deleting:** when a recurring entry is deleted, should its past confirmed matches and history be kept?
+## 16. Open and Resolved Questions
+- All open and resolved design questions are tracked in [open-questions.md](open-questions.md)
+- This document lists only agreed functionality. A decision is added here once its question is resolved
