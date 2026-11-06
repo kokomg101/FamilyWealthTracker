@@ -27,6 +27,7 @@ Status: requirements only, no code yet. Last updated 2026-11-06.
   - Liabilities
 - Total Net Worth is shown at the bottom (Liquid + Retirement + Non-Liquid − Liabilities)
 - Each section is tappable and opens its categories
+- The dashboard also shows an Income & Expenses section (see Section 9). It is separate from net worth and not included in the Total Net Worth formula
 
 ## 5. Category Drill-Down
 - Tapping a section shows its categories, for example:
@@ -63,9 +64,60 @@ Status: requirements only, no code yet. Last updated 2026-11-06.
 - Track money coming in (income) and going out (expenses)
 - Each entry has an amount, date, category, and the person(s) it belongs to
 
+### 9.1 Income & Expenses Dashboard
+- Each Family Group dashboard has an Income & Expenses section
+- Tapping it opens a screen showing monthly income, expenses, and net cash flow
+- Recurring and variable transactions are shown separately
+- Family Group membership and ownership-percentage rules (Section 8) apply to income and expenses, the same way they apply to accounts
+
+### 9.2 Recurring Income and Expenses
+- Users create recurring entries manually
+- Each entry has an amount, category, description, frequency, and expected payment date
+- Examples: mortgage, daycare, tuition, subscriptions, insurance, salary
+- A recurring entry's amount is either:
+  - **Fixed:** the same every time (e.g. a subscription)
+  - **Estimated:** expected to vary month to month (e.g. a utility bill)
+- Recurring entries can be edited, paused, or deleted
+
+### 9.3 Variable Income and Expenses
+- Supports transactions imported from connected financial accounts and transactions entered manually
+- Transactions are categorized automatically when possible, and users can correct the category manually
+- Monthly totals are shown by category
+- Credit card purchases count as expenses
+- Payments toward a credit card balance are not counted as additional expenses (the purchases were already counted)
+
+### 9.4 Duplicate Detection
+Runs whenever the user manually refreshes connected financial accounts:
+- Imported transactions are compared against the user's recurring income and expense entries
+- A possible match is flagged when the transaction amount exactly matches a recurring entry
+- Transaction date and merchant information are also considered when available
+- A warning shows that the transaction may be a duplicate
+- Transactions are never automatically merged or deleted
+- Linking two matching entries requires user confirmation
+- **Confirmed:** the transaction is counted only once in financial summaries
+- **Rejected:** both transactions stay separate and are both counted
+
+### 9.5 Needs Review Screen
+- One central Needs Review screen lists all possible duplicate matches
+- Each item shows the recurring entry side by side with the imported transaction
+- Users can confirm or reject matches one at a time or in bulk
+- Confirmed and rejected decisions are saved and not asked again
+- Unresolved matches stay visible until reviewed
+
+### 9.6 Monthly Summary
+Shows, for the selected Family Group and month:
+- Total monthly income
+- Recurring expenses
+- Variable expenses
+- Total expenses
+- Net monthly cash flow (total income − total expenses)
+- Number of transactions awaiting review
+
+Recurring entries and imported transactions are never double-counted.
+
 ## 10. Account Connections and Manual Entry
 - Link bank and brokerage accounts through a connection provider
-- Balances update only when the user taps refresh (no automatic background refresh)
+- Balances and transactions update only when the user taps refresh (no automatic background refresh)
 - Manually add and edit other assets (e.g. property, cash, valuables) and debts (e.g. loans, credit cards)
 - Manual and connected accounts appear the same way in groups and drill-downs
 
@@ -100,11 +152,18 @@ Status: requirements only, no code yet. Last updated 2026-11-06.
 - Sign-in vs. local-first: Face ID / passcode now, user authentication later
 - Retirement liquidity: separate Retirement Assets section
 - Joint accounts across groups: count only the shares owned by group members
+- Income and expenses on the dashboard: an Income & Expenses section on each group dashboard, using the same membership and ownership rules (Section 9)
 
 ## 17. Open Questions
 - **Q1. Three or more owners:** default to an equal split (e.g. 33.33% each)? How should rounding be handled so the shares total exactly 100%?
 - **Q2. Shared liabilities:** do the same ownership-share rules apply to debts like a joint mortgage? (Assumed yes)
 - **Q3. Per-person view:** should there also be a view of a single person's accounts, or is the group drill-down enough?
-- **Q4. Income and expenses on the dashboard:** where should they appear, should they be filtered by group, and should shared income or expenses also use ownership percentages?
-- **Q5. History before the app existed:** connected accounts may provide past balances, but manual assets only start their history when first entered. Is that acceptable?
-- **Q6. Ownership changes over time:** if a split changes (e.g. 50/50 to 70/30), should past snapshots keep the old split?
+- **Q4. History before the app existed:** connected accounts may provide past balances, but manual assets only start their history when first entered. Is that acceptable?
+- **Q5. Ownership changes over time:** if a split changes (e.g. 50/50 to 70/30), should past snapshots keep the old split?
+- **Q6. Estimated amounts vs. exact matching:** duplicate detection flags exact amount matches, but estimated recurring entries (Section 9.2) will rarely match exactly. Should estimated entries match within a tolerance (e.g. ±10%), or rely on date and merchant instead?
+- **Q7. Recurring entries with no imported match:** if a recurring expense is expected but no matching transaction has been imported yet, does the monthly summary count the expected amount, the actual amount only, or show both "expected" and "actual"?
+- **Q8. Owner of a transaction:** imported transactions can inherit the owners of their account. Who owns a manual transaction or recurring entry by default, and can it be split (e.g. 50/50 daycare)?
+- **Q9. Transfers between own accounts:** like credit card payments, moving money between the family's own accounts (e.g. checking to savings, or a loan payment) shouldn't count as income or expense. Should these be detected and excluded the same way?
+- **Q10. Refunds and returns:** should a refund reduce expenses in its category, or count as income?
+- **Q11. Match date window:** how many days before or after the expected payment date should a transaction still be treated as a possible match?
+- **Q12. Pausing vs. deleting:** when a recurring entry is deleted, should its past confirmed matches and history be kept?
